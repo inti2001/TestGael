@@ -2,69 +2,143 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Registro con QR</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+
+*{
+box-sizing:border-box;
+}
+
 body{
-font-family:Arial;
+margin:0;
+font-family:'Segoe UI',sans-serif;
 background:linear-gradient(135deg,#667eea,#764ba2);
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+padding:20px;
 }
 
-.card{
+/* tarjeta */
+
+.container{
 background:white;
-padding:30px;
-border-radius:12px;
-width:320px;
+padding:40px;
+border-radius:15px;
+width:100%;
+max-width:380px;
 text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+animation:fadeIn 0.6s ease;
 }
+
+h2{
+margin-bottom:20px;
+color:#333;
+}
+
+/* inputs */
 
 input{
-width:90%;
-padding:10px;
+width:100%;
+padding:12px;
 margin:10px 0;
-border-radius:6px;
-border:1px solid #ccc;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:14px;
+transition:0.2s;
 }
+
+input:focus{
+border-color:#4facfe;
+outline:none;
+box-shadow:0 0 5px rgba(79,172,254,0.4);
+}
+
+/* botón */
 
 button{
 width:100%;
-padding:10px;
-background:linear-gradient(135deg,#667eea,#764ba2);
+padding:12px;
+margin-top:10px;
 border:none;
+border-radius:8px;
+background:linear-gradient(135deg,#667eea,#764ba2);
 color:white;
-border-radius:6px;
+font-size:16px;
 cursor:pointer;
+transition:0.3s;
 }
 
-#qrcode{
-margin-top:20px;
+button:hover{
+background:white;
+color: black;
+}
+
+/* QR */
+
+.qr-box{
+margin-top:25px;
+padding:15px;
+border-radius:10px;
+background:#f5f7fb;
 display:flex;
 justify-content:center;
 }
+
+/* animación */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* responsive */
+
+@media (max-width:480px){
+
+.container{
+padding:30px;
+}
+
+h2{
+font-size:22px;
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
-<h2>Registra tus datos</h2>
+<h2>Registro</h2>
 
-<input type="text" id="nombre" placeholder="Nombre">
+<input type="text" id="nombre" placeholder="Nombre completo">
 
-<input type="email" id="correo" placeholder="Correo">
+<input type="email" id="correo" placeholder="Correo electrónico">
 
-<button onclick="generarQR()">Generar QR</button>
+<button onclick="generarQR()">Generar Código QR</button>
 
+<div class="qr-box">
 <div id="qrcode"></div>
+</div>
 
 </div>
 
@@ -85,7 +159,7 @@ const url = `https://inti2001.github.io/TestGael/asistencia.html?nombre=${encode
 document.getElementById("qrcode").innerHTML="";
 
 new QRCode(document.getElementById("qrcode"),{
-text: url,
+text:url,
 width:200,
 height:200
 });
