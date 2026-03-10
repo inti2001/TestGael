@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Registro con QR</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:12px;
+width:320px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#4facfe;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+#qrcode{
+margin-top:20px;
+display:flex;
+justify-content:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Registro</h2>
+
+<input type="text" id="nombre" placeholder="Nombre">
+
+<input type="email" id="correo" placeholder="Correo">
+
+<button onclick="generarQR()">Generar QR</button>
+
+<div id="qrcode"></div>
+
+</div>
+
+<script>
+
+function generarQR(){
+
+const nombre = document.getElementById("nombre").value;
+const correo = document.getElementById("correo").value;
+
+if(!nombre || !correo){
+alert("Completa los campos");
+return;
+}
+
+const url = `asistencia.html?nombre=${encodeURIComponent(nombre)}&correo=${encodeURIComponent(correo)}`;
+
+document.getElementById("qrcode").innerHTML="";
+
+new QRCode(document.getElementById("qrcode"),{
+text: url,
+width:200,
+height:200
+});
+
+}
+
+</script>
+
+</body>
+</html>

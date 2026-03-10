@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Asistencia</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef2ff;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:10px;
+width:400px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+li{
+padding:10px;
+border-bottom:1px solid #eee;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Lista de Asistencia</h2>
+
+<ul id="lista"></ul>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const nombre = params.get("nombre");
+const correo = params.get("correo");
+
+const lista = document.getElementById("lista");
+
+const item = document.createElement("li");
+
+item.innerHTML = `<strong>${nombre}</strong> - ${correo}`;
+
+lista.appendChild(item);
+
+</script>
+
+</body>
+</html>
