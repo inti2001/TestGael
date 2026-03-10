@@ -49,13 +49,13 @@ const params = new URLSearchParams(window.location.search);
 const nombre = params.get("nombre");
 const correo = params.get("correo");
 
-const lista = document.getElementById("lista");
-
-const item = document.createElement("li");
-
-item.innerHTML = `<strong>${nombre}</strong> - ${correo}`;
-
-lista.appendChild(item);
+document.body.innerHTML += `
+<h2>Registro de Asistencia</h2>
+<ul>
+<li><b>Nombre:</b> ${nombre}</li>
+<li><b>Correo:</b> ${correo}</li>
+</ul>
+`;
 
 </script>
 
